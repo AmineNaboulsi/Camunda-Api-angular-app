@@ -1,0 +1,31 @@
+<div>
+  <h2>Start Process</h2>
+  <div>
+    <label for="process-select">Select Process:</label>
+    <select id="process-select" [(ngModel)]="selectedProcess">
+      <option *ngFor="let proc of processDefinitions" [value]="proc.key">{{ proc.name || proc.key }}</option>
+    </select>
+  </div>
+
+  <div>
+    <h3>Process Variables (Optional)</h3>
+    <div>
+      <input type="text" #varKey placeholder="Variable Key">
+      <input type="text" #varValue placeholder="Variable Value">
+      <button (click)="addVariable(varKey.value, varValue.value); varKey.value=''; varValue.value=''">Add Variable</button>
+    </div>
+    <div *ngIf="Object.keys(formVariables).length > 0">
+      <h4>Current Variables:</h4>
+      <ul>
+        <li *ngFor="let key of Object.keys(formVariables)">{{ key }}: {{ formVariables[key] }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <button (click)="startProcess()" [disabled]="!selectedProcess">Start Process</button>
+
+  <div *ngIf="processStarted">
+    <p>Process started successfully!</p>
+    <p>Process Instance ID: {{ processInstanceId }}</p>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<div>
+  <h2>Task List</h2>
+  <button (click)="loadTasks()">Refresh Tasks</button>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Creation Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.created }}</td>
+        <td>
+          <button (click)="selectTask(task)">Select</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedTask">
+    <h3>Task Details: {{ selectedTask.name }}</h3>
+    
+    <div>
+      <h4>Add Task Variables (Optional)</h4>
+      <div>
+        <input type="text" #varKey placeholder="Variable Key">
+        <input type="text" #varValue placeholder="Variable Value">
+        <button (click)="addTaskVariable(varKey.value, varValue.value); varKey.value=''; varValue.value=''">Add Variable</button>
+      </div>
+
+    </div>
+
+    <button (click)="completeTask()">Complete Task</button>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+camunda:
+  bpm:
+    run:
+      cors:
+        enabled: true
+        allowed-origins: http://localhost:4200

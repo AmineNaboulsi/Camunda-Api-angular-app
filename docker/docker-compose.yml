@@ -1,0 +1,13 @@
+services:
+  camunda:
+    image: camunda/camunda-bpm-platform:run-7.21.0
+    container_name: camunda-run
+    ports:
+      - "8180:8080" 
+    volumes:
+      - ./default.yml:/camunda/configuration/default.yml
+      - ./diagram_3.bpmn:/camunda/configuration/resources/diagram_3.bpmn
+    environment:
+      - CAMUNDA_RUN_AUTH_ENABLED=true
+      - CAMUNDA_ADMIN_USER=admin
+      - CAMUNDA_ADMIN_PASSWORD=admin
